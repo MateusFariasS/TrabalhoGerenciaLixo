@@ -1,9 +1,15 @@
+
 public class CaminhaoPequeno {
     private String id ;
     private int capacidade;
     private double cargaAtual;
     private int viagensRealizadas;
     private String status;
+    private int tempoMinPico;
+    private int tempoMaxPico;
+    private int tempoMinForaPico;
+    private int tempoMaxForaPico;
+
 
     public CaminhaoPequeno(int capacidade){
         this.id = id;
@@ -11,6 +17,10 @@ public class CaminhaoPequeno {
         this.cargaAtual = 0;
         this.viagensRealizadas = 0;
         this.status = "disponível";
+        this.tempoMinPico = tempoMinPico;
+        this.tempoMaxPico = tempoMaxPico;
+        this.tempoMinForaPico = tempoMinForaPico;
+        this.tempoMaxForaPico = tempoMaxForaPico;
     }
 
 
@@ -52,5 +62,22 @@ public class CaminhaoPequeno {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean carregarLixo(int quantidade) {
+        if (cargaAtual + quantidade <= capacidade) {
+            cargaAtual += quantidade;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int calcularTempoViagem(boolean horarioPico) {
+        if (horarioPico) {
+            return (int) (Math.random() * (tempoMaxPico - tempoMinPico + 1) + tempoMinPico);
+        } else {
+            return (int) (Math.random() * (tempoMaxForaPico - tempoMinForaPico + 1) + tempoMinForaPico);
+        }
     }
 }
